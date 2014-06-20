@@ -1,0 +1,7 @@
+{
+  "packages": {
+    "streams": {},
+    "bootstrap-3": {},
+    "iron-router": {}
+  }
+}
