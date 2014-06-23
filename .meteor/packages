@@ -10,3 +10,5 @@ iron-router
 service-configuration
 accounts-facebook
 less
+facebook-node-sdk
+profile-online

@@ -2,11 +2,25 @@
   <div class="row">
     <div class="col-sm-12 center">
       <div class="page-header">
-        <h1>Livechat <small>different chat</small></h1>
+        <h1>Livechat <small>realtime chat</small></h1>
       </div>
       {{#unless currentUser}}
         <button class="btn btn-primary fb-login">Login with Facebook</button>
       {{/unless}}
+      {{#if currentUser}}
+        <div class="list-group">
+          {{#each getUserFriends}}
+            <a href="#" class="list-group-item center open-chat" data-id="{{id}}">
+              {{name}}
+              {{#if isOnline id}}
+                <span class="dot dot-online"></span>
+              {{else}}
+                <span class="dot dot-offline"></span>
+              {{/if}}
+            </a>
+          {{/each}}
+        </div>
+      {{/if}}
     </div>
   </div>
 </template>

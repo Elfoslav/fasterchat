@@ -2,6 +2,8 @@
   "packages": {
     "streams": {},
     "bootstrap-3": {},
-    "iron-router": {}
+    "iron-router": {},
+    "facebook-node-sdk": {},
+    "profile-online": {}
   }
 }

@@ -4,6 +4,9 @@
 .margin-top {
   margin-top: 15px !important;
 }
+.center {
+  text-align: center;
+}
 
 /**
  * Bootstrap overrides
@@ -14,4 +17,20 @@ h1 {
 
 .page-header {
   margin-top: 20px;
+}
+
+/**
+ * dots...
+ */
+.dot {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  &.dot-offline {
+    background: red;
+  }
+  &.dot-online {
+    background: #0c0;
+  }
 }

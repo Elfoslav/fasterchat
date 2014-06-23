@@ -1,2 +1,2 @@
 *.komodoproject
-server/config/config.js
+server/lib/config/config.js
