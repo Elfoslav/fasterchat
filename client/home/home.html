@@ -4,7 +4,9 @@
       <div class="page-header">
         <h1>Livechat <small>different chat</small></h1>
       </div>
-      <button class="btn btn-primary fb-login">Login with Facebook</button>
+      {{#unless currentUser}}
+        <button class="btn btn-primary fb-login">Login with Facebook</button>
+      {{/unless}}
     </div>
   </div>
 </template>

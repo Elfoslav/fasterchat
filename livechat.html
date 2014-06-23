@@ -7,6 +7,9 @@
 
 <template name="layout">
   <div class="container">
+    {{#if currentUser}}
+      <p class="margin-top">Logged in: <b>{{currentUser.profile.name}}</b> | <a href="#" class="logout btn btn-danger">Log out</a></p>
+    {{/if}}
     {{> yield}}
   </div>
 </template>

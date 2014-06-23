@@ -4,8 +4,9 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-autopublish
-insecure
 streams
 bootstrap-3
 iron-router
+service-configuration
+accounts-facebook
+less
