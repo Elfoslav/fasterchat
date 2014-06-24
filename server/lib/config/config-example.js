@@ -4,8 +4,14 @@
 App = {
   FB: {}
 };
-App.FB.appId = '1511865555709534';
-App.FB.secret = '52cca73f41b9ab4dc87a1f36b6f18493';
+
+if(/localhost/.test(Meteor.absoluteUrl())) {
+  App.FB.appId = 'localhostappID';
+  App.FB.secret = 'localhostFBsecret';
+} else {
+  App.FB.appId = 'productionappID';
+  App.FB.secret = 'productionFBsecret';
+}
 
 if (/localhost/.test(Meteor.absoluteUrl())) {
   ServiceConfiguration.configurations.remove({
