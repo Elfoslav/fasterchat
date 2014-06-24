@@ -19,8 +19,11 @@ Meteor.methods({
     });
   },
   getUnreadMessagesCount: function(senderFbId) {
+    var user = Meteor.users.findOne(this.userId);
+
     return Messages.find({
       senderFbId: senderFbId,
+      receiverFbId: user.services.facebook.id,
       isRead: false
     }).count();
   }
