@@ -1,6 +1,5 @@
 Template.home.events({
   'click .fb-login': function(e) {
-    //Router.go('chat');
     Meteor.loginWithFacebook({
         requestPermissions: ['user_friends']
       }, function(err) {
@@ -31,5 +30,8 @@ Template.home.helpers({
     user = user || {};
     user.profile = user.profile || {};
     return user.profile.online;
+  },
+  url: function() {
+    return Meteor.absoluteUrl();
   }
 });
