@@ -10,7 +10,8 @@
       {{#if currentUser}}
         <div class="list-group">
           {{#each getUserFriends}}
-            <a href="#" class="list-group-item center open-chat" data-id="{{id}}">
+            <a href="/chat/{{id}}" class="list-group-item center">
+              <img src="https://graph.facebook.com/{{id}}/picture?type=small" alt="photo" />
               {{name}}
               {{#if isOnline id}}
                 <span class="dot dot-online"></span>

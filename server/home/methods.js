@@ -1,10 +1,10 @@
+//Methods for home view
 Meteor.methods({
   'getUserFriends': function() {
     FB.setAccessToken(Meteor.user().services.facebook.accessToken);
 
     var future = new Future();
     FB.api('/me/friends', function(err, friends) {
-      console.log(err);
       if(err) {
         future.throw(err);
       }

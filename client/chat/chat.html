@@ -2,9 +2,13 @@
   <div class="row">
     <div class="col-sm-12 center">
       <div class="page-header">
-        <h1>Livechat <small>different chat</small></h1>
+        <h1><a href="/" title="back"><span class="glyphicon glyphicon-chevron-left"></span></a> Livechat <small>realtime chat</small></h1>
       </div>
-      ...
+        <h3><img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" /> {{friend.profile.name}}</h3>
+
+        <p>
+          <textarea class="form-control" rows="3" placeholder="Write to {{friend.profile.name}}"></textarea>
+        </p>
     </div>
   </div>
 </template>

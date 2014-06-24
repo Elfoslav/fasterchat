@@ -25,11 +25,9 @@ Template.home.helpers({
     return Session.get('friends');
   },
   isOnline: function(fbId) {
-    console.log('fbId: ', fbId);
     var user = Meteor.users.findOne({
       'services.facebook.id': fbId
     });
-    console.log('user: ', user);
     user = user || {};
     user.profile = user.profile || {};
     return user.profile.online;

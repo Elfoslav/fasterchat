@@ -15,7 +15,8 @@ Meteor.startup(function() {
     }, {
       fields: {
         'services.facebook.id': 1,
-        'profile.online': 1
+        'profile.online': 1,
+        'profile.name': 1
       }
     });
   });
