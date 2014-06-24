@@ -1,13 +1,26 @@
 <template name="chat">
   <div class="row">
-    <div class="col-sm-12 center">
+    <div class="col-sm-12">
       <div class="page-header">
         <h1><a href="/" title="back"><span class="glyphicon glyphicon-chevron-left"></span></a> Livechat <small>realtime chat</small></h1>
       </div>
-        <h3><img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" /> {{friend.profile.name}}</h3>
+        <h3>
+          <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
+          <small>Chat with </small>{{friend.profile.name}}
+        </h3>
 
+        {{#each messages}}
+          <p>
+            <img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" />
+            <small>{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</small>: {{message}}
+          </p>
+        {{/each}}
+        <p class="hidden typing-now">
+          <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
+          <small>Typing now:</small> <span class="typing-now-text"></span>
+        </p>
         <p>
-          <textarea class="form-control" rows="3" placeholder="Write to {{friend.profile.name}}"></textarea>
+          <textarea class="form-control chat-textarea" rows="3" placeholder="Write to {{friend.profile.name}}"></textarea>
         </p>
     </div>
   </div>

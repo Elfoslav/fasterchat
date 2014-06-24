@@ -20,4 +20,21 @@ Meteor.startup(function() {
       }
     });
   });
+
+  Meteor.publish('userMessages', function(fbId) {
+    var user = Meteor.users.findOne(this.userId);
+    console.log('this.user.services.facebook.id', user.services.facebook.id);
+    return Messages.find({
+      $or: [
+        { $and: [
+          { receiverFbId: user.services.facebook.id },
+          { senderFbId: fbId }
+        ]},
+        { $and: [
+          { receiverFbId: fbId },
+          { senderFbId: user.services.facebook.id }
+        ]}
+      ]
+    });
+  });
 });
