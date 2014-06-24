@@ -1,6 +1,6 @@
 //Methods for home view
 Meteor.methods({
-  'getUserFriends': function() {
+  getUserFriends: function() {
     FB.setAccessToken(Meteor.user().services.facebook.accessToken);
 
     var future = new Future();
@@ -13,9 +13,15 @@ Meteor.methods({
 
     return future.wait();
   },
-  'userGoesOffline': function() {
+  userGoesOffline: function() {
     Meteor.users.update({ _id: this.userId }, {
       $set: { 'profile.online': false }
     });
+  },
+  getUnreadMessagesCount: function(senderFbId) {
+    return Messages.find({
+      senderFbId: senderFbId,
+      isRead: false
+    }).count();
   }
 });

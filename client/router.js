@@ -13,8 +13,11 @@ Router.map(function() {
         friend: Meteor.users.findOne({
           'services.facebook.id': this.params.fbId
         }),
-        messages: Messages.find()
+        messages: Messages.find({}, { sort: { timestamp: 1 } })
       }
+    },
+    onRun: function() {
+      Meteor.call('markMessagesAsRead', this.params.fbId);
     }
   });
   this.route('notFound', {path: '*' });

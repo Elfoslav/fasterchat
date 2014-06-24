@@ -13,10 +13,15 @@
             <a href="/chat/{{id}}" class="list-group-item center">
               <img src="https://graph.facebook.com/{{id}}/picture?type=small" alt="photo" />
               {{name}}
+
               {{#if isOnline id}}
                 <span class="dot dot-online"></span>
               {{else}}
                 <span class="dot dot-offline"></span>
+              {{/if}}
+
+              {{#if getUnreadMessagesCount id}}
+                <span class="label label-info">{{getUnreadMessagesCount id}}</span>
               {{/if}}
             </a>
           {{else}}

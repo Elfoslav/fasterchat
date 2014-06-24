@@ -33,5 +33,18 @@ Template.home.helpers({
   },
   url: function() {
     return Meteor.absoluteUrl();
+  },
+  getUnreadMessagesCount: function(senderFbId) {
+    if(!senderFbId) {
+      console.error('senderFbId parameter missing in getUnreadMessagesCount');
+    }
+    Meteor.call('getUnreadMessagesCount', senderFbId, function(err, messagesCount) {
+      if(err) {
+        console.log(err);
+      } else {
+        Session.set('unreadMessages' + senderFbId, messagesCount);
+      }
+    });
+    return Session.get('unreadMessages' + senderFbId);
   }
 });

@@ -35,6 +35,9 @@ Meteor.startup(function() {
           { senderFbId: user.services.facebook.id }
         ]}
       ]
+    }, {
+      sort: { timestamp: -1 },
+      limit: 15
     });
   });
 });

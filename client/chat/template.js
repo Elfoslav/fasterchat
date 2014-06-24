@@ -8,22 +8,23 @@ Template.chat.events({
   'keyup .chat-textarea': function(e) {
     var receiverId = Router.getData().friend._id;
     var receiverFbId = Router.getData().friend.services.facebook.id;
+    var senderFbId = Meteor.user().services.facebook.id;
     var msg = $.trim($(e.currentTarget).val());
     //13 is enter key
     if (e.which == 13) {
       e.preventDefault();
       //send & save message
       var data = {
-        senderFbId: Meteor.user().services.facebook.id,
+        senderFbId: senderFbId,
         receiverFbId: receiverFbId,
         message: msg
       };
-      Meteor.call('saveMessage', data, function(err) {
+      Meteor.call('saveMessage', data, function(err, msgId) {
         if(err) {
           alert('An error occured, please try again.');
         } else {
           $(e.currentTarget).val('');
-          messageStream.emit('msgSent' + receiverId);
+          messageStream.emit('msgSent' + receiverId, msgId,senderFbId);
         }
       });
     } else {
@@ -34,12 +35,5 @@ Template.chat.events({
 })
 
 Template.chat.helpers({
-  getUserFbId: function(receiverFbId, senderFbId) {
-    if(senderFbId == Meteor.user().services.facebook.id) {
-      console.log('returning senderFbId: ', senderFbId);
-      return senderFbId;
-    }
-    console.log('returning receiverFbId: ', receiverFbId);
-    return receiverFbId;
-  }
+
 });
