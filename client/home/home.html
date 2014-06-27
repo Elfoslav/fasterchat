@@ -1,16 +1,26 @@
 <template name="home">
   <div class="row">
     <div class="col-sm-12">
-      <div class="page-header">
-        <h1>Livechat <small>realtime chat</small></h1>
-      </div>
-      {{#unless currentUser}}
-        <button class="btn btn-primary fb-login">Login with Facebook</button>
+      {{#if loggingIn}}
+        <div class="page-header">
+          <h1>Logging in <small>please wait...</small></h1>
+        </div>
+      {{else}}
+        <div class="page-header">
+          <h1>Livechat <small>realtime chat</small></h1>
+        </div>
+      {{/if}}
+
+      {{#unless loggingIn}}
+        {{#unless currentUser}}
+          <button class="btn btn-primary fb-login">Login with Facebook</button>
+        {{/unless}}
       {{/unless}}
+
       {{#if currentUser}}
         <div class="list-group">
           {{#each getUserFriends}}
-            <a href="/chat/{{id}}" class="list-group-item center">
+            <a href="/chat/{{id}}" class="list-group-item">
               <img src="https://graph.facebook.com/{{id}}/picture?type=small" alt="photo" />
               {{name}}
 
