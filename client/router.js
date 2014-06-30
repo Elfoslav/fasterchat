@@ -1,5 +1,10 @@
 Router.map(function() {
-  this.route('home', {path: '/'});
+  this.route('home', {
+    path: '/',
+    onRun: function() {
+      Meteor.call('setIsInChat', false);
+    }
+  });
   this.route('chat', {
     path: '/chat/:fbId',
     waitOn: function() {
@@ -17,7 +22,11 @@ Router.map(function() {
       }
     },
     onRun: function() {
+      Meteor.call('setIsInChat', true);
       Meteor.call('markMessagesAsRead', this.params.fbId);
+    },
+    onStop: function() {
+      Meteor.call('setIsInChat', false);
     }
   });
   this.route('notFound', {path: '*' });

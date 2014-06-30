@@ -25,10 +25,12 @@
               {{name}}
 
               {{#if isOnline id}}
-                <span class="dot dot-online"></span>
+                <span class="dot dot-online" title="online"></span>
               {{else}}
-                <span class="dot dot-offline"></span>
+                <span class="dot dot-offline" title="offline"></span>
               {{/if}}
+
+              &nbsp;<span class="glyphicon glyphicon-comment typing-now hidden" title="typing now"></span>
 
               {{#if getUnreadMessagesCount id}}
                 <span class="label label-info">{{getUnreadMessagesCount id}}</span>

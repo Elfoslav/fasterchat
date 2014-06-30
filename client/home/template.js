@@ -23,14 +23,6 @@ Template.home.helpers({
     });
     return Session.get('friends');
   },
-  isOnline: function(fbId) {
-    var user = Meteor.users.findOne({
-      'services.facebook.id': fbId
-    });
-    user = user || {};
-    user.profile = user.profile || {};
-    return user.profile.online;
-  },
   url: function() {
     return Meteor.absoluteUrl();
   },

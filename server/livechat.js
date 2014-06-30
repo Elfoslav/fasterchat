@@ -5,7 +5,9 @@ Meteor.startup(function() {
 
   Meteor.publish('currentUser', function() {
     return Meteor.users.find({ _id: this.userId }, {
-      fields: { "services.facebook.id": 1 }
+      fields: {
+        "services.facebook.id": 1
+      }
     });
   });
 
@@ -16,14 +18,14 @@ Meteor.startup(function() {
       fields: {
         'services.facebook.id': 1,
         'profile.online': 1,
-        'profile.name': 1
+        'profile.name': 1,
+        inChat: 1
       }
     });
   });
 
   Meteor.publish('userMessages', function(fbId) {
     var user = Meteor.users.findOne(this.userId);
-    console.log('this.user.services.facebook.id', user.services.facebook.id);
     return Messages.find({
       $or: [
         { $and: [

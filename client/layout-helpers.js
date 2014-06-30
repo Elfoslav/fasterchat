@@ -1,3 +1,0 @@
-Template.layout.helpers({
-
-});

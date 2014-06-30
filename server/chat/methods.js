@@ -43,5 +43,10 @@ Meteor.methods({
       { $set: { isRead: true, isReadAt: new Date() } },
       { multi: true }
     );
+  },
+  setIsInChat: function(inChat) {
+    Meteor.users.update(this.userId, {
+      $set: { inChat: inChat }
+    });
   }
 });

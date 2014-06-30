@@ -15,10 +15,11 @@ Meteor.startup(function() {
 
     //when user sends a message
     messageStream.on('msgSent' + Meteor.userId(), function(msgId, senderFbId) {
-      if($('.typing-now').length) {
+      //typing now is also on homepage
+      $('.typing-now').addClass('hidden');
+      if(Router.current().route.name == 'chat') {
         //user is in /chat page
         $('.typing-now-text').text('');
-        $('.typing-now').addClass('hidden');
         Meteor.call('markMessageAsRead', msgId);
       } else {
         //update unread messages
@@ -28,6 +29,15 @@ Meteor.startup(function() {
       }
     });
 
+  });
+
+  Handlebars.registerHelper('isOnline', function(fbId) {
+    var user = Meteor.users.findOne({
+      'services.facebook.id': fbId
+    });
+    user = user || {};
+    user.profile = user.profile || {};
+    return user.profile.online;
   });
 });
 
