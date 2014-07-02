@@ -7,7 +7,14 @@
         <h3>
           <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
           <small>Chat with </small>{{friend.profile.name}}
-          {{#if isOnline friend.services.facebook.id}} {{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
+
+          {{#if isOnline friend.services.facebook.id}}
+            <span class="dot dot-online" title="online"></span>
+          {{else}}
+            <span class="dot dot-offline" title="offline"></span>
+          {{/if}}
+
+          {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
         </h3>
 
         {{#each messages}}

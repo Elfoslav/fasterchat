@@ -15,7 +15,7 @@ Meteor.methods({
   },
   userGoesOffline: function() {
     Meteor.users.update({ _id: this.userId }, {
-      $set: { 'profile.online': false }
+      $set: { 'profile.online': false, inChat: false }
     });
   },
   getUnreadMessagesCount: function(senderFbId) {

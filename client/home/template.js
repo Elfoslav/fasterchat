@@ -19,7 +19,14 @@ Template.home.helpers({
         return friend.id;
       });
       Meteor.subscribe('userFriends', ids);
-      Session.set('friends', friends);
+
+      var users = Meteor.users.find({
+        'services.facebook.id': { $in:  ids }
+      }, {
+        sort: { 'profile.online': -1 }
+      }).fetch();
+
+      Session.set('friends', users);
     });
     return Session.get('friends');
   },

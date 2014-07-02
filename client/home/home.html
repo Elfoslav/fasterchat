@@ -20,11 +20,11 @@
       {{#if currentUser}}
         <div class="list-group">
           {{#each getUserFriends}}
-            <a href="/chat/{{id}}" class="list-group-item">
-              <img src="https://graph.facebook.com/{{id}}/picture?type=small" alt="photo" />
-              {{name}}
+            <a href="/chat/{{services.facebook.id}}" class="list-group-item">
+              <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
+              {{profile.name}}
 
-              {{#if isOnline id}}
+              {{#if isOnline services.facebook.id}}
                 <span class="dot dot-online" title="online"></span>
               {{else}}
                 <span class="dot dot-offline" title="offline"></span>
@@ -32,8 +32,8 @@
 
               &nbsp;<span class="glyphicon glyphicon-comment typing-now hidden" title="typing now"></span>
 
-              {{#if getUnreadMessagesCount id}}
-                <span class="label label-info">{{getUnreadMessagesCount id}}</span>
+              {{#if getUnreadMessagesCount services.facebook.id}}
+                <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>
               {{/if}}
             </a>
           {{else}}
