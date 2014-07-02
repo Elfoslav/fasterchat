@@ -4,23 +4,29 @@
       <div class="page-header">
         <h1><a href="/" title="back"><span class="glyphicon glyphicon-chevron-left"></span></a> Livechat <small>realtime chat</small></h1>
       </div>
-        <h3>
-          <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
-          <small>Chat with </small>{{friend.profile.name}}
+        <h3 class="row">
+          <span class="col-xs-2">
+            <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
+          </span>
 
-          {{#if isOnline friend.services.facebook.id}}
-            <span class="dot dot-online" title="online"></span>
-          {{else}}
-            <span class="dot dot-offline" title="offline"></span>
-          {{/if}}
+          <span class="col-xs-10">
+            <small>Chat with </small>
+            {{friend.profile.name}}
 
-          {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
+            {{#if isOnline friend.services.facebook.id}}
+              <span class="dot dot-online" title="online"></span>
+            {{else}}
+              <span class="dot dot-offline" title="offline"></span>
+            {{/if}}
+
+            {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
+          </span>
         </h3>
 
         {{#each messages}}
-          <p>
-            <img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" />
-            <small>{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</small>: {{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}
+          <p class="row">
+            <span class="col-xs-2"><img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" /></span>
+            <span class="col-xs-10"><small>{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</small>: {{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
           </p>
         {{/each}}
         <p class="hidden typing-now">

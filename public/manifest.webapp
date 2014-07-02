@@ -1,0 +1,16 @@
+{
+	"version": "0.2",
+	"name": "Livechat",
+	"description": "Chat with your friends faster",
+	"launch_path": "/",
+	"appcache_path": "/offline.appcache",
+	"icons": {
+		"16": "/typewriter-icon.png",
+		"48": "/typewriter-icon.png",
+		"128": "/typewriter-icon.png"
+	},
+	"developer": {
+		"name": "Tomáš Elfoslav Hromník",
+		"url": "http://hromnik.com"
+	}
+}
