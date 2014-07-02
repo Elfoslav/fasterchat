@@ -4,18 +4,22 @@ Meteor.startup(function() {
   Deps.autorun(function() {
 
     //handler on message typing
-    messageStream.on('msg' + Meteor.userId(), function(msg) {
+    messageStream.on('msg' + Meteor.userId(), function(msg, senderId) {
       if(msg) {
+        console.log('id: ', senderId);
+        $('.typing-now-' + senderId).removeClass('hidden');
         $('.typing-now').removeClass('hidden');
         $('.typing-now-text').text(msg);
       } else {
+        $('.typing-now-' + senderId).addClass('hidden');
         $('.typing-now').addClass('hidden');
       }
     });
 
     //when user sends a message
-    messageStream.on('msgSent' + Meteor.userId(), function(msgId, senderFbId) {
+    messageStream.on('msgSent' + Meteor.userId(), function(msgId, senderFbId, senderId) {
       //typing now is also on homepage
+      $('.typing-now-' + senderId).addClass('hidden');
       $('.typing-now').addClass('hidden');
       if(Router.current().route.name == 'chat') {
         //user is in /chat page

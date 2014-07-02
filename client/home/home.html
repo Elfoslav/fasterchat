@@ -30,7 +30,7 @@
                 <span class="dot dot-offline" title="offline"></span>
               {{/if}}
 
-              &nbsp;<span class="glyphicon glyphicon-comment typing-now hidden" title="typing now"></span>
+              &nbsp;<span class="glyphicon glyphicon-comment typing-now-{{_id}} hidden" title="typing now"></span>
 
               {{#if getUnreadMessagesCount services.facebook.id}}
                 <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>

@@ -8,6 +8,7 @@ Template.chat.events({
   'keyup .chat-textarea': function(e) {
     var receiverId = Router.getData().friend._id;
     var receiverFbId = Router.getData().friend.services.facebook.id;
+    var senderId = Meteor.userId();
     var senderFbId = Meteor.user().services.facebook.id;
     var msg = $.trim($(e.currentTarget).val());
     //13 is enter key
@@ -24,12 +25,12 @@ Template.chat.events({
           alert('An error occured, please try again.');
         } else {
           $(e.currentTarget).val('');
-          messageStream.emit('msgSent' + receiverId, msgId,senderFbId);
+          messageStream.emit('msgSent' + receiverId, msgId, senderFbId, senderId);
         }
       });
     } else {
       //send key strokes to a friend
-      messageStream.emit('msg' + receiverId, msg);
+      messageStream.emit('msg' + receiverId, msg, senderId);
     }
   }
 })
