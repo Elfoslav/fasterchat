@@ -1,6 +1,6 @@
 {
 	"version": "0.2",
-	"name": "Livechat",
+	"name": "FasterChat",
 	"description": "Chat with your friends faster",
 	"launch_path": "/",
 	"appcache_path": "/offline.appcache",

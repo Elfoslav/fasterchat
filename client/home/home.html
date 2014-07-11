@@ -7,13 +7,17 @@
         </div>
       {{else}}
         <div class="page-header">
-          <h1>Livechat <small>realtime chat</small></h1>
+          <h1>FasterChat <small>realtime chat</small></h1>
         </div>
       {{/if}}
 
       {{#unless loggingIn}}
         {{#unless currentUser}}
-          <button class="btn btn-primary fb-login">Login with Facebook</button>
+          <p>Chat with your friends faster.</p>
+          <p>See what your friend is typing right now.</p>
+          <p>In realtime.</p>
+          <p><button class="btn btn-primary fb-login">Login with Facebook</button></p>
+          <p><img src="/img/fasterchat-1-small.gif" alt="demo" /></p>
         {{/unless}}
       {{/unless}}
 
@@ -38,8 +42,8 @@
             </a>
           {{else}}
             <p>
-              No one of your friends use Livechat.
-              <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share Livechat with friends!</a></p>
+              No one of your friends use FasterChat.
+              <a href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share FasterChat with friends!</a></p>
           {{/each}}
         </div>
       {{/if}}

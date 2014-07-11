@@ -1,2 +1,3 @@
 *.komodoproject
 server/lib/config/config.js
+deploy.sh
