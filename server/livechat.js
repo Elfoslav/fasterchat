@@ -42,4 +42,31 @@ Meteor.startup(function() {
       limit: 15
     });
   });
+
+  Accounts.onCreateUser(function(options, user) {
+
+    console.log('user: ', user);
+    console.log('userId: ', Meteor.userId());
+
+    var fbService = user.services.facebook;
+
+    if(user.profile) {
+      user.profile.name = fbService.name;
+    } else {
+      user.profile = {
+        name: fbService.name
+      }
+    }
+
+    //update facebook friends of other clients
+    Meteor.call('getUserFriends', fbService.accessToken, function(err, friends) {
+      if(friends) {
+        friends.forEach(function(friend) {
+          messageStream.emit('newFriend' + friend.id);
+        });
+      }
+    });
+
+    return user;
+  });
 });

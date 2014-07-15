@@ -6,7 +6,6 @@ Meteor.startup(function() {
     //handler on message typing
     messageStream.on('msg' + Meteor.userId(), function(msg, senderId) {
       if(msg) {
-        console.log('id: ', senderId);
         $('.typing-now-' + senderId).removeClass('hidden');
         $('.typing-now').removeClass('hidden');
         $('.typing-now-text').text(msg);
@@ -32,6 +31,19 @@ Meteor.startup(function() {
         }
       }
     });
+
+    if(Meteor.user() && Meteor.user().services && Meteor.user().services.facebook) {
+      //re-render user friends when some friend is registered
+      messageStream.on('newFriend' + Meteor.user().services.facebook.id, function() {
+        Meteor.call('getUserFriends', function(err, friends) {
+          if(err) {
+            console.error('Error getting user friends: ', err);
+          } else {
+            Session.set('friends', friends);
+          }
+        });
+      });
+    }
 
   });
 
