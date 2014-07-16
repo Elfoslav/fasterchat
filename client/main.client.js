@@ -1,6 +1,24 @@
 Meteor.startup(function() {
   window.onbeforeunload = onWindowClose;
 
+  var pageTitle = document.title;
+  var pageTitleInterval;
+  var isWindowActive;
+
+  //check if window/tab is visible
+  window.onfocus = function() {
+    //show
+    isWindowActive = true;
+    pageTitleInterval = clearInterval(pageTitleInterval);
+    document.title = pageTitle;
+    Meteor.call('markMessagesAsRead', Session.get('senderFbId'));
+  }
+
+  window.onblur = function() {
+    //hidden
+    isWindowActive = false;
+  }
+
   Deps.autorun(function() {
 
     //handler on message typing
@@ -23,7 +41,14 @@ Meteor.startup(function() {
       if(Router.current().route.name == 'chat') {
         //user is in /chat page
         $('.typing-now-text').text('');
-        Meteor.call('markMessageAsRead', msgId);
+
+        if(!isWindowActive) {
+          if(!pageTitleInterval) {
+            pageTitleInterval = setInterval(function() {
+              document.title = document.title == pageTitle ? 'New message...' : pageTitle;
+            }, 1000);
+          }
+        }
       } else {
         //update unread messages
         if(typeof Session.get('unreadMessages' + senderFbId) !== 'undefined') {

@@ -14,6 +14,12 @@ Template.chat.events({
     //13 is enter key
     if (e.which == 13) {
       e.preventDefault();
+
+      if(msg === '') {
+        //prevent empty message to be sent
+        return;
+      }
+
       //send & save message
       var data = {
         senderFbId: senderFbId,

@@ -22,6 +22,7 @@ Router.map(function() {
       }
     },
     onRun: function() {
+      Session.set('senderFbId', this.params.fbId);
       Meteor.call('setIsInChat', true);
       Meteor.call('markMessagesAsRead', this.params.fbId);
     },
