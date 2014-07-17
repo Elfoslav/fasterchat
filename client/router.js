@@ -36,7 +36,3 @@ Router.map(function() {
 Router.configure({
   layoutTemplate: 'layout'
 });
-
-Router.onRun(function() {
-  Meteor.subscribe('currentUser');
-});
