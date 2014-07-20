@@ -6,7 +6,9 @@
       "bootstrap-3": {},
       "iron-router": {},
       "facebook-node-sdk": {},
-      "profile-online": {}
+      "profile-online": {},
+      "phonegap-oauth": {},
+      "packmeteor": {}
     },
     "packages": {
       "streams": {
@@ -16,8 +18,8 @@
       },
       "bootstrap-3": {
         "git": "https://github.com/mangasocial/meteor-bootstrap-3.git",
-        "tag": "v3.1.1-1",
-        "commit": "63dd38968828bb8963636df93e9a1c45e2dfe67e"
+        "tag": "v3.2.0-1",
+        "commit": "17a63902fc6cf1096c5289d963c66cf28b474727"
       },
       "iron-router": {
         "git": "https://github.com/EventedMind/iron-router.git",
@@ -33,6 +35,16 @@
         "git": "https://github.com/erundook/meteor-profile-online.git",
         "tag": "v0.1.9",
         "commit": "a982f18f22cb2025a02a9b38815c68e23469cd4b"
+      },
+      "phonegap-oauth": {
+        "git": "https://github.com/AdamBrodzinski/meteor-phonegap-oauth.git",
+        "tag": "v0.1.5",
+        "commit": "73ccd691e762ddda55e920851b0e02e95cd4bcd5"
+      },
+      "packmeteor": {
+        "git": "https://github.com/SpaceCapsule/packmeteor.git",
+        "tag": "v0.1.1",
+        "commit": "3e8ff14e292e1652e06d1a449ee93c92cddc9c36"
       },
       "blaze-layout": {
         "git": "https://github.com/EventedMind/blaze-layout.git",

@@ -8,7 +8,6 @@ Router.map(function() {
         "name": "FasterChat",
         "description": "Chat with your friends faster",
         "launch_path": "/",
-        "appcache_path": "/offline.appcache",
         "icons": {
           "16": "/icon-16x16.png",
           "48": "/icon-48x48.png",

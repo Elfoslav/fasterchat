@@ -30,6 +30,7 @@ Router.map(function() {
       Meteor.call('setIsInChat', false);
     }
   });
+
   this.route('notFound', {path: '*' });
 });
 
