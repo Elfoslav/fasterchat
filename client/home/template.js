@@ -9,9 +9,6 @@ Template.home.events({
 });
 
 Template.home.helpers({
-  isOnline: function() {
-    return Meteor.status().connected;
-  },
   getUserFriends: function() {
     Meteor.call('getUserFriends', function(err, friends) {
       if(err) {
