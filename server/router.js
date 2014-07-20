@@ -4,7 +4,7 @@ Router.map(function() {
     path: '/manifest.webapp',
     action: function() {
       var manifest = {
-        "version": "0.1",
+        "version": "0.0.1",
         "name": "FasterChat",
         "description": "Chat with your friends faster",
         "launch_path": "/",

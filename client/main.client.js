@@ -7,7 +7,7 @@ Meteor.startup(function() {
   var pageTitle = document.title;
   var pageTitleInterval;
   var isWindowActive;
-  var isMobile = navigator.appVersion.indexOf("Mobile") !== -1;
+  var isMobile = navigator.userAgent.indexOf("Mobile") !== -1;
   console.log('isMobile: ', isMobile);
 
   document.addEventListener("visibilitychange", function () {
