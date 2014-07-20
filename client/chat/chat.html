@@ -1,25 +1,28 @@
 <template name="chat">
-  <div class="row" id="chat">
-    <div class="col-sm-12">
-      <h3 class="row">
-        <span class="col-xs-2">
-          <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
-        </span>
+  <div id="chat">
+    <div class="chat-with">
+      <div class="container">
+        <div class="row">
+          <span class="col-xs-2">
+            <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
+          </span>
 
-        <span class="col-xs-10">
-          <small>Chat with </small>
-          {{friend.profile.name}}
+          <span class="col-xs-10">
+            <small>Chat with </small>
+            <b>{{friend.profile.name}}</b>
 
-          {{#if isOnline friend.services.facebook.id}}
-            <span class="dot dot-online" title="online"></span>
-          {{else}}
-            <span class="dot dot-offline" title="offline"></span>
-          {{/if}}
+            {{#if isOnline friend.services.facebook.id}}
+              <span class="dot dot-online" title="online"></span>
+            {{else}}
+              <span class="dot dot-offline" title="offline"></span>
+            {{/if}}
 
-          {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
-        </span>
-      </h3>
-
+            {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="container">
       {{#each messages}}
         <p class="row">
           <span class="col-xs-2"><img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" /></span>

@@ -1,44 +1,45 @@
 <template name="home">
-
-  {{#unless loggingIn}}
-    {{#unless currentUser}}
-      <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Chat with your friends faster.</p>
-      <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;See what your friend is typing right now.</p>
-      <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;In realtime.</p>
-      <p><button class="btn btn-primary fb-login">Login with Facebook</button></p>
-      <br/>
-      <p class="hidden-xs"><img src="/img/fasterchat-1.gif" alt="demo" /></p>
-      <p class="hidden-sm hidden-lg"><img src="/img/fasterchat-small-mobile.gif" alt="demo" /></p>
+  <div class="container">
+    {{#unless loggingIn}}
+      {{#unless currentUser}}
+        <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;Chat with your friends faster.</p>
+        <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;See what your friend is typing right now.</p>
+        <p><span class="glyphicon glyphicon-ok"></span>&nbsp;&nbsp;In realtime.</p>
+        <p><button class="btn btn-primary fb-login">Login with Facebook</button></p>
+        <br/>
+        <p class="hidden-xs"><img src="/img/fasterchat-1.gif" alt="demo" /></p>
+        <p class="hidden-sm hidden-lg"><img src="/img/fasterchat-small-mobile.gif" alt="demo" /></p>
+      {{/unless}}
     {{/unless}}
-  {{/unless}}
 
-  {{#if currentUser}}
-    <div class="list-group">
-      {{#each getUserFriends}}
-        <a href="/chat/{{services.facebook.id}}" class="list-group-item">
-          <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
-          {{profile.name}}
+    {{#if currentUser}}
+      <div class="list-group">
+        {{#each getUserFriends}}
+          <a href="/chat/{{services.facebook.id}}" class="list-group-item">
+            <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
+            {{profile.name}}
 
-          {{#if isOnline services.facebook.id}}
-            <span class="dot dot-online" title="online"></span>
-          {{else}}
-            <span class="dot dot-offline" title="offline"></span>
-          {{/if}}
+            {{#if isOnline services.facebook.id}}
+              <span class="dot dot-online" title="online"></span>
+            {{else}}
+              <span class="dot dot-offline" title="offline"></span>
+            {{/if}}
 
-          &nbsp;<span class="glyphicon glyphicon-comment typing-now-{{_id}} hidden" title="typing now"></span>
+            &nbsp;<span class="glyphicon glyphicon-comment typing-now-{{_id}} hidden" title="typing now"></span>
 
-          {{#if getUnreadMessagesCount services.facebook.id}}
-            <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>
-          {{/if}}
-        </a>
-      {{else}}
-        <p>
-          No one of your friends uses FasterChat.
-        </p>
-        <p>
-          <a class="btn btn-success" href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share FasterChat with friends!</a>
-        </p>
-      {{/each}}
-    </div>
-  {{/if}}
+            {{#if getUnreadMessagesCount services.facebook.id}}
+              <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>
+            {{/if}}
+          </a>
+        {{else}}
+          <p>
+            No one of your friends uses FasterChat.
+          </p>
+          <p>
+            <a class="btn btn-success" href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share FasterChat with friends!</a>
+          </p>
+        {{/each}}
+      </div>
+    {{/if}}
+  </div>
 </template>
