@@ -7,6 +7,8 @@ Meteor.startup(function() {
   var pageTitle = document.title;
   var pageTitleInterval;
   var isWindowActive;
+  var isMobile = navigator.appVersion.indexOf("Mobile") !== -1;
+  console.log('isMobile: ', isMobile);
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
@@ -31,6 +33,7 @@ Meteor.startup(function() {
       Meteor.call('markMessagesAsRead', Session.get('senderFbId'));
     }
   });
+
 
   Deps.autorun(function() {
 
@@ -91,6 +94,7 @@ Meteor.startup(function() {
     user.profile = user.profile || {};
     return user.profile.online;
   });
+
 });
 
 function onWindowClose() {

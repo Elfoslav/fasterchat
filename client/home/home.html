@@ -7,7 +7,7 @@
         </div>
       {{else}}
         <div class="page-header">
-          <h1>FasterChat <small>realtime chat</small></h1>
+          <h1>FasterChat <small>realtime chat {{#unless isOnline}}(Offline){{/unless}}</small></h1>
         </div>
       {{/if}}
 
@@ -19,6 +19,7 @@
           <p><button class="btn btn-primary fb-login">Login with Facebook</button></p>
           <br/>
           <p class="hidden-xs"><img src="/img/fasterchat-1.gif" alt="demo" /></p>
+          <p class="hidden-sm hidden-lg"><img src="/img/fasterchat-small-mobile.gif" alt="demo" /></p>
         {{/unless}}
       {{/unless}}
 

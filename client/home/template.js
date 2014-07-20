@@ -9,24 +9,32 @@ Template.home.events({
 });
 
 Template.home.helpers({
+  isOnline: function() {
+    return Meteor.status().connected;
+  },
   getUserFriends: function() {
     Meteor.call('getUserFriends', function(err, friends) {
       if(err) {
         alert('Something wrong happened');
         console.log(err);
       }
-      var ids = friends.map(function(friend) {
-        return friend.id;
-      });
-      Meteor.subscribe('userFriends', ids);
 
-      var users = Meteor.users.find({
-        'services.facebook.id': { $in:  ids }
-      }, {
-        sort: { 'profile.online': -1 }
-      }).fetch();
+      if(friends) {
+        var ids = friends.map(function(friend) {
+          return friend.id;
+        });
+        Meteor.subscribe('userFriends', ids);
 
-      Session.set('friends', users);
+        var users = Meteor.users.find({
+          'services.facebook.id': { $in:  ids }
+        }, {
+          sort: { 'profile.online': -1 }
+        }).fetch();
+
+        Session.set('friends', users);
+      } else {
+        console.log('No friends.');
+      }
     });
     return Session.get('friends');
   },
