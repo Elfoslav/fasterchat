@@ -42,7 +42,5 @@ Template.chat.events({
 })
 
 Template.chat.helpers({
-  isOnline: function() {
-    return Meteor.status().connected;
-  }
+
 });

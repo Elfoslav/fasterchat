@@ -1,5 +1,5 @@
 Template.header.helpers({
-  isOnline: function() {
+  hasConnection: function() {
     return Meteor.status().connected;
   },
   showBackBtn: function() {
