@@ -38,11 +38,13 @@ Meteor.methods({
   //mark multiple messages as read
   markMessagesAsRead: function(senderFbId) {
     var user = Meteor.users.findOne(this.userId);
-    Messages.update(
-      { senderFbId: senderFbId, receiverFbId: user.services.facebook.id },
-      { $set: { isRead: true, isReadAt: new Date() } },
-      { multi: true }
-    );
+    if (user && user.services && user.services.facebook) {
+      Messages.update(
+        { senderFbId: senderFbId, receiverFbId: user.services.facebook.id },
+        { $set: { isRead: true, isReadAt: new Date() } },
+        { multi: true }
+      );
+    }
   },
   setIsInChat: function(inChat) {
     Meteor.users.update(this.userId, {
