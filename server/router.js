@@ -9,9 +9,9 @@ Router.map(function() {
         "description": "Chat with your friends faster",
         "launch_path": "/",
         "icons": {
-          "16": "/icon-16x16.png",
-          "48": "/icon-48x48.png",
-          "128": "/icon-128x128.png"
+          "16": "/icon_16.png",
+          "48": "/icon_48.png",
+          "128": "/icon_128.png"
         },
         "developer": {
           "name": "Tomáš Elfoslav Hromník",
