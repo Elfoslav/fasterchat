@@ -6,7 +6,7 @@ Router.map(function() {
       var manifest = {
         "version": "0.0.1",
         "name": "FasterChat",
-        "description": "Chat with your friends faster",
+        "description": "Chat with your friends faster. \nSee what your friend is typing right now, every single letter.",
         "launch_path": "/",
         "icons": {
           "16": "/icon_16.png",
