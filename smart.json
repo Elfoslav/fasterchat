@@ -5,7 +5,7 @@
     "iron-router": {},
     "facebook-node-sdk": {},
     "profile-online": {},
-    "phonegap-oauth": {},
-    "packmeteor": {}
+    "packmeteor": {},
+    "cordova": {}
   }
 }

@@ -8,7 +8,23 @@ Meteor.startup(function() {
   var pageTitleInterval;
   var isWindowActive;
   var isMobile = navigator.userAgent.indexOf("Mobile") !== -1;
-  console.log('isMobile: ', isMobile);
+  cordova = new Cordova({
+    plugins: {
+      notification: true
+    }
+  });
+
+  if (isMobile) {
+    //cordova.alert(message, alertCallback, [title], [buttonName])
+    cordova.alert("Welcome to FasterChat. This is a brand new concept of chat application.", function() {
+          // Alert is closed
+    }, 'Greeting', 'Ok');
+
+    cordova.vibrate(500);
+  }
+
+  console.log('isMobile: ' + (isMobile ? 'yes' : 'no'));
+  console.log('cordova.isReady(): ' + (cordova.isReady() ? 'yes' : 'no'));
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {

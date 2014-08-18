@@ -1,11 +1,5 @@
 Template.home.events({
-  'click .fb-login': function(e) {
-    Meteor.loginWithFacebook({
-        requestPermissions: ['user_friends']
-      }, function(err) {
-      console.log(err);
-    });
-  }
+
 });
 
 Template.home.helpers({
@@ -35,9 +29,19 @@ Template.home.helpers({
     });
     return Session.get('friends');
   },
+
   url: function() {
     return Meteor.absoluteUrl();
   },
+
+  fbLoginUrl: function() {
+    Meteor.call('getFbLoginUrl', function(err, url) {
+      Session.set('fbLoginUrl', url);
+    });
+
+    return Session.get('fbLoginUrl');
+  },
+
   getUnreadMessagesCount: function(senderFbId) {
     if(!senderFbId) {
       console.error('senderFbId parameter missing in getUnreadMessagesCount');

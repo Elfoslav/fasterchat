@@ -14,6 +14,14 @@ Router.map(function() {
       ];
     },
     data: function() {
+      var friend = Meteor.users.findOne({
+        'services.facebook.id': this.params.fbId
+      });
+
+      if (!friend) {
+        return null;
+      }
+
       return {
         friend: Meteor.users.findOne({
           'services.facebook.id': this.params.fbId
@@ -31,9 +39,45 @@ Router.map(function() {
     }
   });
 
+  this.route('clientOauthFb', {
+    path: '/oauth/facebook',
+    action: function() {
+      if (this.params.error) {
+        console.log('oaut error: ', this.params.error);
+        Router.go('/');
+      } else {
+        var str = window.location.hash;
+        str = str.split('&');
+        var accessToken = str[0];
+        var expiresIn = str[1];
+        accessToken = accessToken.split('=');
+        expiresIn = expiresIn.split('=');
+        var result = {
+          access_token : accessToken[1],
+          expires_in : expiresIn[1]
+        };
+
+        Meteor.call('fbLogin', result, function(error, result) {
+          if (error) {
+            console.log('fbLogin Error: ', error);
+            cordova.alert('An error occured, try again', function () {}, 'Error', 'Ok');
+          } else {
+            Meteor.loginWithToken(result.token, function(err) {
+              if(err) {
+                Meteor._debug("Error logging in with token: " + err);
+              }
+              Router.go('/');
+            });
+          }
+        });
+      }
+    }
+  });
+
   this.route('notFound', {path: '*' });
 });
 
 Router.configure({
-  layoutTemplate: 'layout'
+  layoutTemplate: 'layout',
+  notFoundTemplate: 'notFound'
 });
