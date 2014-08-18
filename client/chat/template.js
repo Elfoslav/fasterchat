@@ -6,8 +6,8 @@ Template.chat.events({
     }
   },
   'keyup .chat-textarea': function(e) {
-    var receiverId = Router.getData().friend._id;
-    var receiverFbId = Router.getData().friend.services.facebook.id;
+    var receiverId = Session.get('friend')._id;
+    var receiverFbId = Session.get('friend').services.facebook.id;
     var senderId = Meteor.userId();
     var senderFbId = Meteor.user().services.facebook.id;
     var msg = $.trim($(e.currentTarget).val());

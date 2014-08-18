@@ -22,6 +22,8 @@ Router.map(function() {
         return null;
       }
 
+      Session.set('friend', friend);
+
       return {
         friend: Meteor.users.findOne({
           'services.facebook.id': this.params.fbId
