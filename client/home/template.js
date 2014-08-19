@@ -6,7 +6,7 @@ Template.home.helpers({
   getUserFriends: function() {
     Meteor.call('getUserFriends', function(err, friends) {
       if(err) {
-        alert('Something wrong happened');
+        alert('Something wrong happened. Try to login/logout.');
         console.log(err);
       }
 
