@@ -38,8 +38,13 @@ Template.chat.events({
       //send key strokes to a friend
       messageStream.emit('msg' + receiverId, msg, senderId);
     }
+  },
+
+  'click .hide-chat-with': function(e) {
+    $('.chat-with').addClass('hidden');
+    $('#chat .messages').addClass('chat-with-hidden');
   }
-})
+});
 
 Template.chat.helpers({
 

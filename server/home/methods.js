@@ -16,6 +16,7 @@ Meteor.methods({
 
     FB.api('/me/friends', function(err, friends) {
       if(err) {
+        console.log('getUserFriends Fb.api error: ', err);
         future.throw(err);
       }
 
