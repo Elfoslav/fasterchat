@@ -15,11 +15,6 @@ Meteor.startup(function() {
   });
 
   if (isMobile) {
-    //cordova.alert(message, alertCallback, [title], [buttonName])
-    cordova.alert("Welcome to FasterChat. This is a brand new concept of chat application.", function() {
-          // Alert is closed
-    }, 'Greeting', 'Ok');
-
     cordova.vibrate(500);
   }
 
