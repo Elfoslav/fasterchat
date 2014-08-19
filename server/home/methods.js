@@ -18,7 +18,13 @@ Meteor.methods({
       if(err) {
         future.throw(err);
       }
-      future.return(friends.data);
+
+      if (friends) {
+        future.return(friends.data);
+      } else {
+        console.log('no friends: ', friends);
+        future.return([]);
+      }
     });
 
     return future.wait();
