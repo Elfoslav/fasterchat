@@ -18,9 +18,7 @@ Meteor.methods({
       if(err) {
         console.log('getUserFriends Fb.api error: ', err);
         future.throw(err);
-      }
-
-      if (friends) {
+      } else if (friends) {
         future.return(friends.data);
       } else {
         console.log('no friends: ', friends);
