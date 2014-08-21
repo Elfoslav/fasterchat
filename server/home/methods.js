@@ -80,9 +80,8 @@ Meteor.methods({
 
       var token = Accounts._generateStampedLoginToken();
       Accounts._insertLoginToken(userData.userId, token);
-      Accounts._setLoginToken(userData.userId, x.connection, Accounts._hashLoginToken(token.token))
-      x.setUserId(userData.userId)
-
+      Accounts._setLoginToken(userData.userId, x.connection, Accounts._hashLoginToken(token.token));
+      x.setUserId(userData.userId);
 
       return {
         id: userData.userId,
