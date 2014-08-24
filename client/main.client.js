@@ -52,11 +52,9 @@ Meteor.startup(function() {
     messageStream.on('msg' + Meteor.userId(), function(msg, senderId) {
       if (msg) {
         $('.typing-now-' + senderId).removeClass('hidden');
-        $('.typing-now').removeClass('hidden');
         $('.typing-now-text').text(msg);
       } else {
         $('.typing-now-' + senderId).addClass('hidden');
-        $('.typing-now').addClass('hidden');
       }
     });
 

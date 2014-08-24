@@ -31,7 +31,7 @@
           <span class="col-xs-10"><small>{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</small>: {{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
         </p>
       {{/each}}
-      <p class="hidden typing-now">
+      <p class="hidden typing-now-{{friend._id}}">
         <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
         <small>Typing now:</small> <span class="typing-now-text"></span>
       </p>
