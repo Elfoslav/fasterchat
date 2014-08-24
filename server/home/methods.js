@@ -16,8 +16,12 @@ Meteor.methods({
 
     FB.api('/me/friends', function(err, friends) {
       if(err) {
-        console.log('getUserFriends Fb.api error: ', err);
-        future.throw(err);
+        console.log('getUserFriends Fb.api error: ', err.result);
+        if (err.result && err.result.error && err.result.error.code == 190) {
+          future.throw(new Error('Token expired'));
+        } else {
+          future.throw(err);
+        }
       } else if (friends) {
         future.return(friends.data);
       } else {

@@ -107,6 +107,10 @@ Meteor.startup(function() {
     return user.profile.online;
   });
 
+  Handlebars.registerHelper('isUndefined', function(param) {
+    return typeof param == 'undefined';
+  });
+
 });
 
 function onWindowClose() {

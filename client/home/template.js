@@ -6,7 +6,10 @@ Template.home.helpers({
   getUserFriends: function() {
     Meteor.call('getUserFriends', function(err, friends) {
       if(err) {
-        alert('Something wrong happened. Try to login/logout.');
+        if (!Session.get('friends')) {
+          Session.set('friends', []);
+          alert('Something wrong happened. Try to login/logout.');
+        }
         console.log(err);
       }
 
@@ -22,11 +25,18 @@ Template.home.helpers({
           sort: { 'profile.online': -1 }
         }).fetch();
 
+        console.log('getUserFriends called : ', Session.get('friends'));
         Session.set('friends', users);
       } else {
         console.log('No friends.');
       }
     });
+
+    return Session.get('friends');
+  },
+
+  //just return session friends so we don't need to call getUserFriends again in template
+  userFriends: function() {
     return Session.get('friends');
   },
 

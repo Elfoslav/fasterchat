@@ -6,6 +6,7 @@
     "facebook-node-sdk": {},
     "profile-online": {},
     "packmeteor": {},
-    "cordova": {}
+    "cordova": {},
+    "spin": {}
   }
 }

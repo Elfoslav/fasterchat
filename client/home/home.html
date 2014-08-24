@@ -21,31 +21,37 @@
 
     {{#if currentUser}}
       <div class="list-group">
-        {{#each getUserFriends}}
-          <a href="/chat/{{services.facebook.id}}" class="list-group-item">
-            <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
-            {{profile.name}}
+        {{#unless isUndefined getUserFriends}}
+          {{#each userFriends}}
+            <a href="/chat/{{services.facebook.id}}" class="list-group-item">
+              <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
+              {{profile.name}}
 
-            {{#if isOnline services.facebook.id}}
-              <span class="dot dot-online" title="online"></span>
-            {{else}}
-              <span class="dot dot-offline" title="offline"></span>
-            {{/if}}
+              {{#if isOnline services.facebook.id}}
+                <span class="dot dot-online" title="online"></span>
+              {{else}}
+                <span class="dot dot-offline" title="offline"></span>
+              {{/if}}
 
-            &nbsp;<span class="glyphicon glyphicon-comment typing-now-{{_id}} hidden" title="typing now"></span>
+              &nbsp;<span class="glyphicon glyphicon-comment typing-now-{{_id}} hidden" title="typing now"></span>
 
-            {{#if getUnreadMessagesCount services.facebook.id}}
-              <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>
-            {{/if}}
-          </a>
+              {{#if getUnreadMessagesCount services.facebook.id}}
+                <span class="label label-info">{{getUnreadMessagesCount services.facebook.id}}</span>
+              {{/if}}
+            </a>
+          {{else}}
+            <p>
+              No one of your friends uses FasterChat.
+            </p>
+            <p>
+              <a class="btn btn-success" href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share FasterChat with friends!</a>
+            </p>
+          {{/each}}
         {{else}}
           <p>
-            No one of your friends uses FasterChat.
+            {{> spinner}}
           </p>
-          <p>
-            <a class="btn btn-success" href="https://www.facebook.com/sharer/sharer.php?u={{url}}&display=popup" target="_blank">Share FasterChat with friends!</a>
-          </p>
-        {{/each}}
+        {{/unless}}
       </div>
     {{/if}}
   </div>
