@@ -59,6 +59,7 @@ Router.map(function() {
           expires_in : expiresIn[1]
         };
 
+        Accounts._setLoggingIn(true);
         Meteor.call('fbLogin', result, function(error, result) {
           if (error) {
             console.log('fbLogin Error: ', error);
@@ -68,6 +69,7 @@ Router.map(function() {
               if(err) {
                 Meteor._debug("Error logging in with token: " + err);
               }
+              Accounts._setLoggingIn(false);
               Router.go('/');
             });
           }

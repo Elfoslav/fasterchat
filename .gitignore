@@ -1,3 +1,4 @@
 *.komodoproject
 server/lib/config/config.js
 deploy.sh
+deploy-beta.sh

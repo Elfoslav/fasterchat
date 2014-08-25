@@ -8,18 +8,8 @@ Meteor.startup(function() {
   var pageTitleInterval;
   var isWindowActive;
   var isMobile = navigator.userAgent.indexOf("Mobile") !== -1;
-  cordova = new Cordova({
-    plugins: {
-      notification: true
-    }
-  });
-
-  if (isMobile) {
-    cordova.vibrate(500);
-  }
 
   console.log('isMobile: ' + (isMobile ? 'yes' : 'no'));
-  console.log('cordova.isReady(): ' + (cordova.isReady() ? 'yes' : 'no'));
 
   document.addEventListener("visibilitychange", function () {
     if (document.hidden) {

@@ -9,7 +9,8 @@
       "profile-online": {},
       "packmeteor": {},
       "cordova": {},
-      "spin": {}
+      "spin": {},
+      "kadira": {}
     },
     "packages": {
       "streams": {
@@ -51,6 +52,11 @@
         "git": "https://github.com/SachaG/meteor-spin.git",
         "tag": "v2.0.4",
         "commit": "f7b1e12a7caff1283cdb3671a393c182d0ae9862"
+      },
+      "kadira": {
+        "git": "https://github.com/meteorhacks/kadira.git",
+        "tag": "v2.4.13",
+        "commit": "1f3c1a427084af5a2eca2e299eb65bc01387df8a"
       },
       "iron-layout": {
         "git": "https://github.com/EventedMind/iron-layout.git",
