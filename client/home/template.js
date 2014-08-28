@@ -8,7 +8,10 @@ Template.home.helpers({
       if(err) {
         if (!Session.get('friends')) {
           Session.set('friends', []);
-          alert('Something wrong happened. Try to login/logout.');
+          //probably login token expired - re-authenticate user
+          Meteor.call('getFbLoginUrl', function(err, url) {
+            location.href = url;
+          });
         }
         console.log(err);
       }
