@@ -4,16 +4,16 @@
 # but you can also edit it by hand.
 
 standard-app-packages
-streams
-bootstrap-3
-iron-router
+arunoda:streams@0.1.17
+cmather:iron-router@0.8.2
 service-configuration
 accounts-facebook
 less
-facebook-node-sdk
-profile-online
-packmeteor
+timbroddin:facebook-node-sdk@0.1.0
+mrt:profile-online@0.1.9
+raix:packmeteor@0.1.2
 spiderable
 http
-spin
-kadira
+sacha:spin@2.0.4
+mizzao:bootstrap-3
+

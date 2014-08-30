@@ -71,6 +71,12 @@ Meteor.startup(function() {
           Session.set('unreadMessages' + senderFbId, Session.get('unreadMessages' + senderFbId) + 1);
         }
       }
+
+      //play notification sound
+      if ('Audio' in window) {
+        var audio = new Audio('/sounds/arpeggio.mp3');
+        audio.play();
+      }
     });
 
     if (Meteor.user() && Meteor.user().services && Meteor.user().services.facebook) {
