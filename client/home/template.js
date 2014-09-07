@@ -28,6 +28,18 @@ Template.home.helpers({
           sort: { 'profile.online': -1 }
         }).fetch();
 
+        //uncomment if you need to see test user
+        //users.push({
+        //  profile: {
+        //    name: 'Test user',
+        //  },
+        //  services: {
+        //    facebook: {
+        //      id: '10203286670160141'
+        //    }
+        //  }
+        //});
+
         console.log('getUserFriends called : ', Session.get('friends'));
         Session.set('friends', users);
       } else {

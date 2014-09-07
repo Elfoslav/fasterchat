@@ -25,7 +25,7 @@
           {{#each userFriends}}
             <a href="/chat/{{services.facebook.id}}" class="list-group-item">
               <img src="https://graph.facebook.com/{{services.facebook.id}}/picture?type=small" alt="photo" />
-              {{profile.name}}
+              <span class="list-group-user-name">{{profile.name}}</span>
 
               {{#if isOnline services.facebook.id}}
                 <span class="dot dot-online" title="online"></span>

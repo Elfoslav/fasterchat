@@ -18,14 +18,14 @@
             {{#if showBackBtn}}
               <span class="glyphicon glyphicon-chevron-left"></span>
             {{/if}}
-            <img src="/logo.png"  alt="FasterChat" /> <small>{{#unless hasConnection}}(Offline){{/unless}}</small>
+            <img src="/logo-orange.png?2"  alt="FasterChat" /> <small>{{#unless hasConnection}}(Offline){{/unless}}</small>
           </a>
         {{/if}}
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse">
         {{#if currentUser}}
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" class="logout"><span class="glyphicon glyphicon-off"></span> {{currentUser.profile.name}}</a></li>
+            <li><a href="#" class="logout"><span class="navbar-user-name">{{currentUser.profile.name}}</span> <span class="glyphicon glyphicon-off"></span></a></li>
           </ul>
         {{/if}}
       </div>

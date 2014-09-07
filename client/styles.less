@@ -1,3 +1,24 @@
+//Bootstrap's clearfix
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+    // Fixes Opera/contenteditable bug:
+    // http://nicolasgallagher.com/micro-clearfix-hack/#comment-36952
+    line-height: 0;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/**
+ * Colors
+ */
+@orange: #FFB514;
+
 /**
  * common styles
  */
@@ -10,11 +31,14 @@ body {
 .center {
   text-align: center;
 }
-p small {
+p small, .gray {
   color: gray;
 }
 .inline-block {
   display: inline-block;
+}
+.text-align-right {
+  text-align: right;
 }
 
 /**
@@ -28,14 +52,49 @@ h1 {
   margin-top: 20px;
 }
 
-.navbar-brand {
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
   padding: 8px 15px;
+  color: @orange;
 }
 
-#chat {
-  .col-xs-2 {
-    padding-right: 0; //0 padding so user image can be bigger
+//navbar
+.navbar-default {
+  background: white;
+  border-bottom-color: @orange;
+  border-bottom-width: 10px;
+}
+
+.navbar-default .navbar-nav > li > a.logout {
+  color: darken(@orange, 5%);
+}
+.navbar-user-name {
+  display: inline-block;
+  min-width: 200px;
+}
+
+/**
+ * list group
+ */
+.list-group-item:first-child, .list-group-item:last-child {
+  border-radius: 0;
+}
+.list-group-item {
+  border-color: #fefefe;
+  box-shadow: 0 0 5px #dedede;
+  margin-bottom: 10px;
+  .list-group-user-name {
+    margin-left: 10px;
   }
+}
+a.list-group-item:hover {
+  background-color: #fafafa;
+}
+
+/**
+ * Glyphicons
+ */
+.glyphicon {
+  color: @orange; //color for all glyphicons
 }
 
 /**
@@ -66,10 +125,11 @@ img {
     position: fixed;
     width: 100%;
     z-index: 1;
-    top: 50px;
+    top: 60px;
     padding-top: 10px;
     padding-bottom: 10px;
-    background: #efefef;
+    background: white;
+    border-bottom: 1px solid @orange;
     .profile-image {
       max-height: 60px;
     }
@@ -77,10 +137,33 @@ img {
   .hide-chat-with {
     color: #777;
   }
+  .chat-grid {
+    .col-left {
+      margin-right: 10px;
+        width: 10%;
+    }
+    .col-middle {
+      display: inline-block;
+      vertical-align: top;
+      width: 60%;
+      &.col-middle-wider {
+        width: 80%;
+      }
+    }
+    .col-right {
+      float: right;
+      width: 220px;
+      vertical-align: top;
+    }
+    .clearfix;
+  }
   .messages {
-    margin-top: 70px;
+    margin-top: 40px;
     &.chat-with-hidden {
-      margin-top: 20px;
+      margin-top: 0;
+    }
+    .message {
+      margin-bottom: 10px;
     }
   }
 }
@@ -90,17 +173,24 @@ img {
  */
 //desktop & tablet
 @media (min-width: 768px) {
-  #chat {
-    .col-xs-2 {
-      width: 8%;
-    }
-    .col-xs-10 {
-      width: 92%;
-    }
+  .navbar > .container .navbar-brand, .navbar > .container-fluid .navbar-brand {
+    margin-left: 50px;
   }
 }
 
 //mobile
 @media (max-width: 768px) {
-
+  .navbar-user-name {
+    min-width: 93%;
+  }
+  #chat {
+    .chat-grid {
+      .col-middle {
+        width: 50%;
+      }
+      .col-right {
+        width: auto;
+      }
+    }
+  }
 }

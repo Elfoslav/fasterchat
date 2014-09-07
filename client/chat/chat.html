@@ -2,13 +2,11 @@
   <div id="chat">
     <div class="chat-with">
       <div class="container">
-        <div class="row">
-          <span class="col-xs-2">
-            <img class="profile-image" src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
-          </span>
-
-          <span class="col-xs-10">
+        <div class="chat-grid">
+          <span class="col-left">
             <small>Chat with </small>
+          </span>
+          <span class="col-middle">
             <b>{{friend.profile.name}}</b>
 
             {{#if isOnline friend.services.facebook.id}}
@@ -18,7 +16,8 @@
             {{/if}}
 
             {{#if isOnline friend.services.facebook.id}}{{#if friend.inChat}}<small>(in chat)</small>{{/if}} {{/if}}
-
+          </span>
+          <span class="col-right">
             <a href="#" class="hide-chat-with pull-right"><span class="glyphicon glyphicon-remove"></span></a>
           </span>
         </div>
@@ -26,14 +25,19 @@
     </div>
     <div class="container messages">
       {{#each messages}}
-        <p class="row">
-          <span class="col-xs-2"><img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" /></span>
-          <span class="col-xs-10"><small>{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</small>: {{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
-        </p>
+        <div class="message chat-grid">
+          <span class="message-img col-left"><img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" /></span>
+          <span class="message-text col-middle">{{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
+          <span class="message-date col-right">{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</span>
+        </div>
       {{/each}}
-      <p class="hidden typing-now-{{friend._id}}">
-        <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
-        <small>Typing now:</small> <span class="typing-now-text"></span>
+      <p class="hidden typing-now-{{friend._id}} chat-grid">
+        <span class="col-left">
+          <img src="https://graph.facebook.com/{{friend.services.facebook.id}}/picture?type=small" alt="photo" />
+        </span>
+        <span class="col-middle col-middle-wider">
+          <small>Typing now:</small> <span class="typing-now-text"></span>
+        </span>
       </p>
       <p>
         <textarea class="form-control chat-textarea" rows="3" placeholder="Write to {{friend.profile.name}}"></textarea>
