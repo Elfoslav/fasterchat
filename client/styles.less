@@ -18,6 +18,8 @@
  * Colors
  */
 @orange: #FFB514;
+@khakiYellow: #D9E021;
+@lightGray: #E6E6E6;
 
 /**
  * common styles
@@ -39,6 +41,9 @@ p small, .gray {
 }
 .text-align-right {
   text-align: right;
+}
+.bold {
+  font-weight: bold;
 }
 
 /**
@@ -63,10 +68,18 @@ h1 {
   background: white;
   border-bottom-color: @orange;
   border-bottom-width: 10px;
-}
-
-.navbar-default .navbar-nav > li > a.logout {
-  color: darken(@orange, 5%);
+  .navbar-toggle {
+    border-color: @orange;
+    &:hover, &:active, &:focus {
+      background-color: white;
+    }
+    .icon-bar {
+      background-color: @orange;
+    }
+  }
+  .navbar-nav > li > a.logout {
+    color: darken(@orange, 5%);
+  }
 }
 .navbar-user-name {
   display: inline-block;
