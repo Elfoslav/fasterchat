@@ -6,22 +6,32 @@ Meteor.startup(function() {
   Meteor.publish('currentUser', function() {
     return Meteor.users.find({ _id: this.userId }, {
       fields: {
+        "friends": 1,
         "services.facebook.id": 1
       }
     });
   });
 
   Meteor.publish('userFriends', function(friendIds) {
-    return Meteor.users.find({
-      'services.facebook.id': { $in: friendIds }
-    }, {
-      fields: {
-        'services.facebook.id': 1,
-        'profile.online': 1,
-        'profile.name': 1,
-        inChat: 1
+    var fields = App.userFriendFields;
+    if (friendIds) {
+      return Meteor.users.find({
+        'services.facebook.id': { $in: friendIds }
+      }, {
+        fields: fields
+      });
+    } else {
+      var user = Meteor.users.findOne(this.userId);
+      if (user && user.friends) {
+        return Meteor.users.find({
+          'services.facebook.id': { $in: user.friends }
+        }, {
+          fields: fields
+        });
       }
-    });
+
+      return this.ready();
+    }
   });
 
   Meteor.publish('userMessages', function(fbId) {

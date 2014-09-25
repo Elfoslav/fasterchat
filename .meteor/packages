@@ -5,7 +5,6 @@
 
 standard-app-packages
 arunoda:streams@0.1.17
-cmather:iron-router@0.8.2
 service-configuration
 accounts-facebook
 less
@@ -15,4 +14,6 @@ raix:packmeteor@0.1.2
 spiderable
 http
 sacha:spin@2.0.4
-mizzao:bootstrap-3
+iron:router
+pinglamb:bootstrap3
+

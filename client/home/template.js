@@ -4,6 +4,11 @@ Template.home.events({
 
 Template.home.helpers({
   getUserFriends: function() {
+    if (Meteor.user() && Meteor.user().friends) {
+      Session.set('friendsIds', Meteor.user().friends);
+    }
+
+    //call getUserFriends every time in order to check if new friend is in app
     Meteor.call('getUserFriends', function(err, friends) {
       if(err) {
         if (!Session.get('friends')) {
@@ -20,39 +25,27 @@ Template.home.helpers({
         var ids = friends.map(function(friend) {
           return friend.id;
         });
-        Meteor.subscribe('userFriends', ids);
 
-        var users = Meteor.users.find({
-          'services.facebook.id': { $in:  ids }
-        }, {
-          sort: { 'profile.online': -1 }
-        }).fetch();
+        var hook = Meteor.subscribe('userFriends', ids);
+        Meteor.call('addUserFriends', ids);
 
-        //uncomment if you need to see test user
-        //users.push({
-        //  profile: {
-        //    name: 'Test user',
-        //  },
-        //  services: {
-        //    facebook: {
-        //      id: '10203286670160141'
-        //    }
-        //  }
-        //});
-
-        console.log('getUserFriends called : ', Session.get('friends'));
-        Session.set('friends', users);
+        Session.set('friendsIds', ids);
       } else {
         console.log('No friends.');
       }
     });
 
-    return Session.get('friends');
+    return Session.get('friendsIds');
   },
 
   //just return session friends so we don't need to call getUserFriends again in template
   userFriends: function() {
-    return Session.get('friends');
+    var ids = Session.get('friendsIds') || [];
+    return Meteor.users.find({
+      'services.facebook.id': { $in:  ids }
+    }, {
+      sort: { 'profile.online': -1 }
+    });
   },
 
   url: function() {

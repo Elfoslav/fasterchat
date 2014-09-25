@@ -33,6 +33,48 @@ Meteor.methods({
     return future.wait();
   },
 
+  getUserFriendsFromDb: function() {
+    var user = Meteor.users.findOne(this.userId);
+    if (user && user.friends) {
+      return Meteor.users.find({
+        'services.facebook.id': { $in: user.friends }
+      }, {
+        fields: App.userFriendFields
+      });
+    }
+
+    return [];
+  },
+
+  /**
+   * Save user friends to friends array
+   */
+  addUserFriends: function(ids) {
+    if (ids) {
+      Meteor.users.update(this.userId, {
+        $addToSet: {
+          friends: {
+            $each: ids
+          }
+        }
+      });
+
+      //we need to add FB id of this user to all his friends
+      var user = Meteor.users.findOne(this.userId);
+      if (user && user.services && user.services.facebook) {
+        ids.forEach(function(id) {
+          Meteor.users.update({
+            "services.facebook.id": id
+           }, {
+            $addToSet: {
+              friends: user.services.facebook.id
+            }
+          });
+        });
+      }
+    }
+  },
+
   userGoesOffline: function() {
     Meteor.users.update({ _id: this.userId }, {
       $set: { 'profile.online': false, inChat: false }
@@ -51,8 +93,8 @@ Meteor.methods({
 
   getFbLoginUrl: function() {
     var url = 'https://www.facebook.com/dialog/oauth?client_id=' +
-        App.FB.appId + '&redirect_uri=' + Meteor.absoluteUrl() +
-        'oauth/facebook/&response_type=token&scope=user_friends';
+      App.FB.appId + '&redirect_uri=' + Meteor.absoluteUrl() +
+      'oauth/facebook/&response_type=token&scope=user_friends';
 
     return url;
   },

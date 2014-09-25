@@ -8,6 +8,9 @@ Meteor.startup(function() {
   var pageTitleInterval;
   var isWindowActive;
   var isMobile = navigator.userAgent.indexOf("Mobile") !== -1;
+  if ('Audio' in window) {
+    var audio = new Audio('/sounds/arpeggio.mp3');
+  }
 
   console.log('isMobile: ' + (isMobile ? 'yes' : 'no'));
 
@@ -73,8 +76,7 @@ Meteor.startup(function() {
       }
 
       //play notification sound
-      if ('Audio' in window) {
-        var audio = new Audio('/sounds/arpeggio.mp3');
+      if ('Audio' in window && audio) {
         audio.play();
       }
     });

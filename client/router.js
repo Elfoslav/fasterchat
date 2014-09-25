@@ -1,6 +1,19 @@
 Router.map(function() {
   this.route('home', {
     path: '/',
+    waitOn: function() {
+      return Meteor.subscribe('userFriends');
+    },
+    data: function() {
+      //find all subscribed users
+      var friends = Meteor.users.find({}, {
+        sort: { 'profile.online': -1 }
+      });
+
+      return {
+        userFriends: friends
+      }
+    },
     onRun: function() {
       Meteor.call('setIsInChat', false);
     }
