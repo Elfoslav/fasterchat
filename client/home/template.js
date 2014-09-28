@@ -8,32 +8,34 @@ Template.home.helpers({
       Session.set('friendsIds', Meteor.user().friends);
     }
 
-    //call getUserFriends every time in order to check if new friend is in app
-    Meteor.call('getUserFriends', function(err, friends) {
-      if(err) {
-        if (!Session.get('friends')) {
-          Session.set('friends', []);
+    if (Meteor.user()) {
+      //call getUserFriends every time in order to check if new friend is in app
+      Meteor.call('getUserFriends', function(err, friends) {
+        console.log('getuserFriends');
+        if(err) {
           //probably login token expired - re-authenticate user
-          Meteor.call('getFbLoginUrl', function(err, url) {
-            location.href = url;
-          });
+          if(Meteor.user()) {
+            Meteor.call('getFbLoginUrl', function(err, url) {
+              location.href = url;
+            });
+          }
+          console.log(err);
         }
-        console.log(err);
-      }
 
-      if(friends) {
-        var ids = friends.map(function(friend) {
-          return friend.id;
-        });
+        if(friends) {
+          var ids = friends.map(function(friend) {
+            return friend.id;
+          });
 
-        var hook = Meteor.subscribe('userFriends', ids);
-        Meteor.call('addUserFriends', ids);
+          var hook = Meteor.subscribe('userFriends', ids);
+          Meteor.call('addUserFriends', ids);
 
-        Session.set('friendsIds', ids);
-      } else {
-        console.log('No friends.');
-      }
-    });
+          Session.set('friendsIds', ids);
+        } else {
+          console.log('No friends.');
+        }
+      });
+    }
 
     return Session.get('friendsIds');
   },
