@@ -47,5 +47,7 @@ Template.chat.events({
 });
 
 Template.chat.helpers({
-
+  messagesLoaded: function() {
+    return Session.get('messagesLoaded');
+  }
 });

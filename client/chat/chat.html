@@ -30,6 +30,12 @@
           <span class="message-text col-middle">{{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
           <span class="message-date col-right gray">{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</span>
         </div>
+      {{else}}
+        {{#if isUndefined messagesLoaded}}
+          {{> spinner}}
+        {{else}}
+          <p>No messages. {{messages.count}}</p>
+        {{/if}}
       {{/each}}
       <p class="hidden typing-now-{{friend._id}} chat-grid">
         <span class="col-left">

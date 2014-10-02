@@ -21,6 +21,7 @@ Router.map(function() {
   this.route('chat', {
     path: '/chat/:fbId',
     waitOn: function() {
+      Session.set('messagesLoaded', undefined);
       return [
         Meteor.subscribe('userFriends', [ this.params.fbId ]),
         Meteor.subscribe('userMessages', this.params.fbId)
@@ -36,6 +37,7 @@ Router.map(function() {
       }
 
       Session.set('friend', friend);
+      Session.set('messagesLoaded', true);
 
       return {
         friend: Meteor.users.findOne({
