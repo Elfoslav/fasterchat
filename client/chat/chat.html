@@ -27,7 +27,7 @@
       {{#each messages}}
         <div class="message chat-grid">
           <span class="message-img col-left"><img src="https://graph.facebook.com/{{senderFbId}}/picture?type=small" alt="photo" /></span>
-          <span class="message-text col-middle">{{message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
+          <span class="message-text col-middle">{{formatMessage message}} {{#unless isRead}}<small>(unread)</small>{{/unless}}</span>
           <span class="message-date col-right gray">{{timestamp.toLocaleDateString}} {{timestamp.toLocaleTimeString}}</span>
         </div>
       {{else}}

@@ -49,5 +49,12 @@ Template.chat.events({
 Template.chat.helpers({
   messagesLoaded: function() {
     return Session.get('messagesLoaded');
+  },
+  formatMessage: function(message) {
+    if (message) {
+      message = Handlebars._escape(message); //escape some <html> tags
+      return new Handlebars.SafeString(message.replace(/(?:(https?\:\/\/[^\s]+))/g,
+        "<a href='$1' target='_blank'>$1</a>")); //return safe string
+    }
   }
 });
