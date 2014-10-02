@@ -50,11 +50,21 @@ Template.chat.helpers({
   messagesLoaded: function() {
     return Session.get('messagesLoaded');
   },
-  formatMessage: function(message) {
+  /**
+   * @returns {String} replace URLs with anchor tag,
+   * Handlebars.SafeString with emoticons
+   */
+  formatMessage: function(message, msgId) {
     if (message) {
       message = Handlebars._escape(message); //escape some <html> tags
-      return new Handlebars.SafeString(message.replace(/(?:(https?\:\/\/[^\s]+))/g,
-        "<a href='$1' target='_blank'>$1</a>")); //return safe string
+      message = message.replace(/(?:(https?\:\/\/[^\s]+))/g,
+        "<a href='$1' target='_blank'>$1</a>");
+
+      setTimeout(function() {
+        $('#message-text-' + msgId).emoticonize();
+      }, 10); //wait for message to be rendered
+
+      return new Handlebars.SafeString(message);
     }
   }
 });

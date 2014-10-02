@@ -1,0 +1,71 @@
+<html xmlns="http://www.w3.org/1999/xhtml" dir="ltr" lang="en-US"> 
+<head profile="http://gmpg.org/xfn/11"> 
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link href="stylesheets/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
+	<script src="javascripts/jquery-1.4.2.min.js" type="text/javascript"></script>
+	<script src="javascripts/jquery.cssemoticons.min.js" type="text/javascript"></script>
+	
+	<script type="text/javascript">
+		$(document).ready(function(){
+			$('.text').emoticonize({
+				//delay: 800,
+				//animate: false,
+				//exclude: 'pre, code, .no-emoticons'
+			});
+			$('#toggle-headline').toggle(
+				function(){
+					$('#large').unemoticonize({
+						//delay: 800,
+						//animate: false
+					})
+				}, 
+				function(){
+					$('#large').emoticonize({
+						//delay: 800,
+						//animate: false
+					})
+				}
+			);
+		})
+	</script>
+	
+	<style type="text/css">
+		#small { font-size: 8px; }
+		#large { font-size: 72px; }
+		#regular { font-size: 20px; }
+		.wrapped { width: 350px; }
+	</style>
+</head>
+<body>
+	<h1 class="text" id="large">
+		It's a pirate ?-) ARGHHH!!!! :)
+	</h1>
+	<p>^^ <i>I made this one up, but it's my plugin so it's supported</i> ^^</p>
+	<p><a href="#" id="toggle-headline">Click here</a> to toggle the "emoticonization" of the headline above.</p>
+	<p class="text" id="small">
+		Yo, this is some tiny text. :-)<br />
+		This is how emoticons stack up in a paragraph B)
+	</p>
+	<p class="text wrapped" id="regular">:O
+	  Here is an example of what emoticons look like in a paragraph :-) You can tell here that the emoticons don't break the line-height in paragraphs like most of the image-replacement methods.
+	  Also, here is a printed URL: http://www.alfajango.com. Notice the <code>:/</code> doesn't get styled. And one in a nested element
+	  <span>:-)</span>
+	</p>
+	<p class="text no-emoticons">
+	  This entire paragraph is excluded from being emoticonized ;-)
+	</p>
+	<p class="text">
+	  This paragraph has specific elements excluded. So this works B) <span class="no-emoticons">But this doesn't :(</span>
+	</p>
+	<hr />
+	<p class="text" id="regular">
+		Here are all of the emoticons currently supported (though it's easy to add your own):
+:-)
+		:-) :) :o) :c) :^) :-D :-( :-9 ;-) :-P :-p :-Þ :-b :-O :-/ :-X :-# :'( B-) 8-) :-\ ;*( :-*
+    :] :&gt; =] =) 8) :} :D 8D XD xD =D :( :&lt; :[ :{ =( ;) ;] ;D :P :p =P =p :b :Þ :O 8O :/ =/ :S :# :X B) O:)
+	</p>
+	<p class="text" id="regular">
+		And some special emoticons: &lt;3 ;( &gt;:) &gt;;) &gt;:( O_o O_O o_o 0_o T_T ^_^ ?-) [+=..]
+	</p>
+	<hr />
+</body> 
