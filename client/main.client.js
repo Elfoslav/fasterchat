@@ -64,7 +64,7 @@ Meteor.startup(function() {
           pageTitleInterval = setInterval(function() {
             document.title = document.title == pageTitle ? 'New message...' : pageTitle;
           }, 1000);
-        } else {
+        } else if (isMobile || Session.get('isWindowActive')) {
           //window is active - mark message as read
           Meteor.call('markMessagesAsRead', senderFbId);
         }
