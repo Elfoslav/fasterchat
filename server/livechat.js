@@ -1,6 +1,9 @@
 Meteor.startup(function() {
   console.log('starting meteor server: ' + Meteor.absoluteUrl());
 
+  Messages._ensureIndex({ receiverFbId: 1 });
+  Messages._ensureIndex({ senderFbId: 1 });
+
   Future = Npm.require('fibers/future');
 
   Meteor.publish('currentUser', function() {

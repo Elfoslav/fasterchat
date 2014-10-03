@@ -18,6 +18,7 @@ ddp@1.0.9
 deps@1.0.4
 ejson@1.0.3
 elfoslav:css-emoticons@1.0.0
+email@1.0.3
 facebook@1.1.0
 fastclick@1.0.0
 follower-livedata@1.0.1
@@ -38,9 +39,12 @@ localstorage@1.0.0
 logging@1.0.3
 meteor-platform@1.1.1
 meteor@1.1.1
+meteorhacks:kadira-binary-deps@1.2.0
+meteorhacks:kadira@2.11.1
 minifiers@1.1.0
 minimongo@1.0.3
 mobile-status-bar@1.0.0
+mongo-livedata@1.0.5
 mongo@1.0.6
 mrt:profile-online@0.1.9
 oauth2@1.1.0
