@@ -24,7 +24,9 @@ Router.map(function() {
       Session.set('messagesLoaded', undefined);
       return [
         Meteor.subscribe('userFriends', [ this.params.fbId ]),
-        Meteor.subscribe('userMessages', this.params.fbId)
+        Meteor.subscribe('userMessages', this.params.fbId, function onReady() {
+          Session.set('messagesLoaded', true);
+        })
       ];
     },
     data: function() {
@@ -37,7 +39,6 @@ Router.map(function() {
       }
 
       Session.set('friend', friend);
-      Session.set('messagesLoaded', true);
 
       return {
         friend: Meteor.users.findOne({

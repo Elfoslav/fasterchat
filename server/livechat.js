@@ -37,6 +37,7 @@ Meteor.startup(function() {
   Meteor.publish('userMessages', function(fbId) {
     var user = Meteor.users.findOne(this.userId);
     var userFbId = user && user.services && user.services.facebook && user.services.facebook.id;
+
     return Messages.find({
       $or: [
         { $and: [
