@@ -3,6 +3,7 @@ Meteor.startup(function() {
 
   Messages._ensureIndex({ receiverFbId: 1 });
   Messages._ensureIndex({ senderFbId: 1 });
+  Messages._ensureIndex({ receiverFbId: 1, senderFbId: 1, timestamp: -1 });
 
   Future = Npm.require('fibers/future');
 

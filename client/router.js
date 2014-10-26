@@ -15,6 +15,11 @@ Router.map(function() {
       }
     },
     onRun: function() {
+      if (typeof messagesSub !== 'undefined') {
+        //remove subscribed messages
+        messagesSub.stop();
+      }
+
       Meteor.call('setIsInChat', false);
     }
   });
@@ -22,11 +27,13 @@ Router.map(function() {
     path: '/chat/:fbId',
     waitOn: function() {
       Session.set('messagesLoaded', undefined);
+      //define global variable messagesSub
+      messagesSub = Meteor.subscribe('userMessages', this.params.fbId, function onReady() {
+        Session.set('messagesLoaded', true);
+      });
       return [
         Meteor.subscribe('userFriends', [ this.params.fbId ]),
-        Meteor.subscribe('userMessages', this.params.fbId, function onReady() {
-          Session.set('messagesLoaded', true);
-        })
+        messagesSub
       ];
     },
     data: function() {
